@@ -1,0 +1,166 @@
+volumes:
+   jenkins-agent-1-vol:
+   jenkins-agent-2-vol:
+   jenkins-agent-3-vol:
+   jenkins-agent-4-vol:
+   jenkins-agent-5-vol:   
+   jenkins-agent-6-vol:
+   jenkins-agent-7-vol: 
+
+services:
+    jenkins-agent1-service:
+      image: jenkins-agent-jdk21
+      container_name: jenkins-agent-1
+      privileged: true      
+      restart: always
+      volumes:
+        - jenkins-agent-1-vol:/home/jenkins/agent
+      environment:
+        JENKINS_AGENT_SSH_PUBKEY: "<pub key>"
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      ports:
+        - "2201:22"
+      deploy:
+        labels:
+          stack: jenkins
+        resources:
+         limits:
+          cpus: '0.5'
+          memory: 2G      
+      networks:
+        - jenkins-network
+
+    jenkins-agent2-service:
+      image: jenkins-agent-jdk21
+      container_name: jenkins-agent-2
+      privileged: true      
+      restart: always
+      volumes:
+        - jenkins-agent-2-vol:/home/jenkins/agent    
+      environment:
+        JENKINS_AGENT_SSH_PUBKEY: "<pub key>"
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      ports:
+        - "2202:22"
+      deploy:
+        labels:
+          stack: jenkins
+        resources:
+         limits:
+          cpus: '0.5'
+          memory: 2G         
+      networks:
+        - jenkins-network
+
+    jenkins-agent3-service:
+      image: jenkins-agent-jdk21
+      container_name: jenkins-agent-3
+      privileged: true      
+      restart: always
+      volumes:
+        - jenkins-agent-3-vol:/home/jenkins/agent        
+      environment:
+        JENKINS_AGENT_SSH_PUBKEY: "<pub key>"
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1  
+      ports:
+        - "2203:22"
+      deploy:
+        labels:
+          stack: jenkins
+        resources:
+         limits:
+          cpus: '0.5'
+          memory: 2G        
+      networks:
+        - jenkins-network
+
+    jenkins-agent4-service:
+      image: jenkins-agent-jdk21
+      container_name: jenkins-agent-4
+      privileged: true
+      restart: always
+      volumes:
+        - jenkins-agent-4-vol:/home/jenkins/agent        
+      environment:
+        JENKINS_AGENT_SSH_PUBKEY: "<pub key>"
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1      
+      ports:
+        - "2204:22"
+      deploy:
+        labels:
+          stack: jenkins
+        resources:
+         limits:
+          cpus: '0.5'
+          memory: 2G        
+      networks:
+        - jenkins-network                
+
+    jenkins-agent5-service:
+      image: jenkins-agent-jdk21
+      container_name: jenkins-agent-5
+      privileged: true      
+      restart: always
+      volumes:
+        - jenkins-agent-5-vol:/home/jenkins/agent        
+      environment:
+        JENKINS_AGENT_SSH_PUBKEY: "<pub key>"
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1      
+      ports:
+        - "2205:22"
+      deploy:
+        labels:
+          stack: jenkins
+        resources:
+         limits:
+          cpus: '0.5'
+          memory: 2G        
+      networks:
+        - jenkins-network  
+
+    jenkins-agent6-service:
+      image: jenkins-agent-jdk21
+      container_name: jenkins-agent-6
+      privileged: true
+      restart: always
+      volumes:
+        - jenkins-agent-6-vol:/home/jenkins/agent        
+      environment:
+        JENKINS_AGENT_SSH_PUBKEY: "<pub key>"
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1      
+      ports:
+        - "2206:22"
+      deploy:
+        labels:
+          stack: jenkins
+        resources:
+         limits:
+          cpus: '0.5'
+          memory: 2G        
+      networks:
+        - jenkins-network
+
+    jenkins-agent7-service:
+      image: jenkins-agent-jdk21
+      container_name: jenkins-agent-7
+      privileged: true
+      restart: always
+      volumes:
+        - jenkins-agent-7-vol:/home/jenkins/agent
+      environment:
+        JENKINS_AGENT_SSH_PUBKEY: "<pub key>"
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      ports:
+        - "2207:22"
+      deploy:
+        labels:
+          stack: jenkins
+        resources:
+          limits:
+            cpus: '0.5'
+            memory: 2G
+      networks:
+        - jenkins-network        
+networks:
+    jenkins-network:
+      external: true

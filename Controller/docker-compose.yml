@@ -1,0 +1,21 @@
+volumes:
+    jenkins-controller-vol:
+services:
+    jenkins-controller-service:
+        image: blue-ocean-jdk21
+        container_name: jenkins-controller
+        restart: always
+        ports:          
+          - "8099:8080" # Feel free to change the port from 8099 to any port you prefer
+          - "50000:50000"
+        deploy:
+          labels:
+            stack: jenkins      
+        volumes:
+          - jenkins-controller-vol:/var/jenkins_home
+        networks:
+          - jenkins-network
+
+networks:
+    jenkins-network:
+      external: true
